@@ -38,7 +38,7 @@
     </tr>
     <tr>
       <td>
-       <div class="img-with-text seal">
+       <div class="img-with-text">
           <img id="seal" src="Pictures/seal.png" >
           <span>Player 3</span>
           <div class="timer seal">
@@ -46,7 +46,7 @@
         </div>
       </td>
       <td>
-        <div class="img-with-text squid">
+        <div class="img-with-text">
           <img id="squid" src="Pictures/squid.png" >
           <span>Player 4</span>
           <div class="timer squid">
@@ -56,7 +56,7 @@
     </tr>
     <tr>
       <td>
-        <div class="img-with-text sloth">
+        <div class="img-with-text">
           <img id="sloth" src="Pictures/sloth.png" >
           <span>Player 5</span>
           <div class="timer sloth">
@@ -64,7 +64,7 @@
         </div>
       </td>
       <td>
-        <div class="img-with-text rooster">
+        <div class="img-with-text">
           <img id="rooster" src="Pictures/rooster.png" >  
           <span>Player 6</span>
           <div class="timer rooster">
@@ -74,7 +74,7 @@
     </tr>
   </table>
   <div id="start_button">
-    <button id="button" class="btn btn-default">Start</button>
+    <button class="btn btn-default">Start</button>
   </div>
   
   <script>
@@ -104,7 +104,6 @@
        }       
    }
    
-   var time = 10;
    //we might want to change this so that players_played saves both username + animal avatar (so we can refer to them for win pages)
    var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
    var situations = ["You laugh and a little bit comes out.",
@@ -134,28 +133,49 @@
      "The hand you\'re shaking is wet...",
      "People are having sex in the stall next to you..."];
    
-   function test(){
+   var time = 10;
+   var timeRunner;
+   var button_clicked = false;
+   
+   function testing(currentIndex, currentPlayer){
      time -= 0.01;
-     $("div." + players_played[0]).html(time.toFixed(2));
-     if(time <= 0.0){
-       $("div." + players_played[0]).remove();
-       $("img#" + players_played[0]).fadeTo('fast', 1);
+     $("div." + currentPlayer).html(time.toFixed(2));
+     console.log(button_clicked)
+     if(time <= 0.0 || button_clicked){
+       $("div." + currentPlayer).remove();
+       $("img#" + currentPlayer).fadeTo('fast', 1);
+       nextPlayer(currentIndex + 1)
+       button_clicked = false;
      }
    }
    
    var index = 0;
    
-   $("#button").click(function(){
-     $("#button").html("Next");
+   function nextPlayer(currentIndex){
+     currentIndex = currentIndex || 0;
+     var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id")
+     $("img#" + currentPlayer).fadeTo('fast', 0.1);
+     clearInterval(timeRunner);
+     timeRunner = setInterval(function() { testing(currentIndex, currentPlayer)}, 10)
+     time = 10;
+   }
+   
+   $("button").click(function(){
+     // if($("button").text() === "Next"){
+//        button_clicked = true;
+//      }   
+     $("button").html("Next");
      $("#card_scenario").html(situations[index]);
      index++;
      //also display the card_scenario block from now on
      $("#card_scenario").show();
-   // $("img#" + players_played[0]).fadeTo('fast', 0.1);
-   // window.setInterval(test, 10);
-   // time = 10;
-       
+     nextPlayer(0);     
    });
+   
+   // var randomSit = Math.floor(Math.random() * situations.length);
+   //
+   // $("#card_scenario").html(situations[randomSit]);
+   // console.log(situations[randomSit])
   </script>
 </body>
 </html>
