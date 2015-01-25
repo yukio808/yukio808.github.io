@@ -69,11 +69,20 @@ td {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
+img {
+  height: 100px;
+  width: 100px;
+}
+=======
 .flashed_content span {
   margin-top: 20px;
   font-weight: bold;
   /*font-size: 40px;*/
 }
+<<<<<<< HEAD
+>>>>>>> 6a7fb996f1b7dd9466b93d278c854cf1b7cb4073
+=======
 
 #player_info {
   font-weight: bold;
@@ -90,3 +99,4 @@ td {
 .score {
   font-weight: bold;
 }
+>>>>>>> c9a87d76258f48bede2e0426ccb1ed9b77c81128
