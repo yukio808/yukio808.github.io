@@ -69,8 +69,7 @@
   
   <script>
   shuffle($("table"));
-
-
+    
    function shuffle(tbl) {
        var arr = tbl.find("td");
        for(
@@ -80,18 +79,31 @@
        );
 
        var tmp;
-       var rows = tbl.find("tr").length
+       var rows = tbl.find("tr").length;
 
-       var cols = tbl.find("tr:first td").length
+       var cols = tbl.find("tr:first td").length;
 
        for (i = 0; i < rows; i++){
            tmp = tbl.find("tr").eq(i);
-           tmp.html()
+           tmp.html();
            for (j = 0; j < cols; j++)
                tmp.append(arr[i*cols+j]);
 
        }       
    }
+/*var tableAccess = [];
+    $("table tr").each(function(){
+      var arrayOfThisRow = [];
+      var tableData = $(this).find("td");
+      if (tableData.length > 0){
+        table.each(function(){
+          arrayOfThisRow.push($(this).text());
+        });
+        tableAccess.push(arrayOfThisRow);
+      }
+      console.log(tableAccess);
+    });*/
+
    
    var time = 10;
    
@@ -100,14 +112,16 @@
      $("div#timer").html(time.toFixed(2));
      if(time <= 0.0){
        $("div#timer").remove();
-       $("img#cat").fadeTo('fast', 1)
+       $("img#cat").fadeTo('fast', 1);
      }
    }
    
    $("#button").click(function(){
-     $("img#cat").fadeTo('fast', 0.1)
-     window.setInterval(test, 25)
-   })
+     $("img#cat").fadeTo('fast', 0.1);
+     window.setInterval(test, 25);
+      $('#button').html("next");
+   });
+
   </script>
 </body>
 </html>
