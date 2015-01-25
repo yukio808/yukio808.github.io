@@ -1,31 +1,43 @@
-h1{
-  font-family:"Lucida", sans-serif;
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  background-image: url("Pictures/symphony.png");
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
   font-size: 50px;
   text-align: center;
 }
 
-form{
-  position: relative;
-  top:20px;
-  margin: 0 auto;
-  width:250px;
+#round_header {
+  margin-top: 20px;
+  margin-bottom: 25px;
 }
 
-#card_scenario{
-  position:relative;
-  top:40px;
+form {
+  font-family: 'Open Sans', sans-serif;
   margin: 0 auto;
-  width:300px;
-  font-family: "Arial Black" sans-serif;
-  font-size: 20px;
-  background-color: #00FFFF;
-  border: 5px solid black;
-  border-radius: 5px;
+  width: 250px;
 }
 
-table{
-  position:relative;
-  top:70px;
+#card_scenario {
+  padding: 20px 15px;
+  margin: 0 auto;
+  width: 300px;
+  background-color: rgba(196, 226, 162, 0.4);
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+table {
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+td {
+  padding: 10px;
 }
 
 .img-with-text img {
@@ -34,29 +46,20 @@ table{
     margin: 0 auto;
 }
 
-td{
-  padding: 10px;
-}
-
-#start_button{
-  text-align: center;
-}
-
-#button{
-  position:relative;
-  top:70px;
-}
-
 .img-with-text {
-    text-align: justify;
+    text-align: center;
     width: 100px;
 }
 
-.timer{
-  position:relative;
-  font-size:45px;
-  top:-50px;
-  z-index:-1;
+
+#start_button{
+  margin-top: 20px;
+  text-align: center;
 }
 
-
+.timer {
+  position: relative;
+  font-size: 45px;
+  top: -50px;
+  z-index: -1;
+}
