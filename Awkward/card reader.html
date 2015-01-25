@@ -20,45 +20,55 @@
   <table align="center">
     <tr>
       <td>
-        <div class="img-with-text cat">
-          <img id="cat" src="Pictures/cat.jpg">
+        <div class="img-with-text">
+          <img id="cat" src="Pictures/cat.png">
           <span>User 1</span>
-          <div id="timer">
+          <div class="timer cat">
           </div>
         </div>
       </td>
       <td>
         <div class="img-with-text">
-          <img src="Pictures/turtle.jpeg">
+          <img id="turtle" src="Pictures/turtle.png">
           <span>User 2</span>
+          <div class="timer turtle">
+          </div>
         </div>
       </td>
     </tr>
     <tr>
       <td>
-       <div class="img-with-text">
-          <img src="Pictures/dog.jpeg" >
+       <div class="img-with-text seal">
+          <img id="seal" src="Pictures/seal.png" >
           <span>User 3</span>
+          <div class="timer seal">
+          </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/squid.jpg" >
+        <div class="img-with-text squid">
+          <img id="squid" src="Pictures/squid.png" >
           <span>User 4</span>
+          <div class="timer squid">
+          </div>
         </div>
       </td>
     </tr>
     <tr>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/sloth.jpg" >
+        <div class="img-with-text sloth">
+          <img id="sloth" src="Pictures/sloth.png" >
           <span>User 5</span>
+          <div class="timer sloth">
+          </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/bunny.jpg" >  
+        <div class="img-with-text rooster">
+          <img id="rooster" src="Pictures/rooster.png" >  
           <span>User 6</span>
+          <div class="timer rooster">
+          </div>
         </div>
       </td>
     </tr>
@@ -94,19 +104,21 @@
    }
    
    var time = 10;
+   var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
    
    function test(){
      time -= 0.01;
-     $("div#timer").html(time.toFixed(2));
+     $("div." + players_played[0]).html(time.toFixed(2));
      if(time <= 0.0){
-       $("div#timer").remove();
-       $("img#cat").fadeTo('fast', 1)
+       $("div." + players_played[0]).remove();
+       $("img#" + players_played[0]).fadeTo('fast', 1);
      }
    }
    
    $("#button").click(function(){
-     $("img#cat").fadeTo('fast', 0.1)
-     window.setInterval(test, 25)
+       $("img#" + players_played[0]).fadeTo('fast', 0.1)
+       window.setInterval(test, 10)
+       time = 10;
    })
   </script>
 </body>
