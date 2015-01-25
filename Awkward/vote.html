@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/situation.js"></script>
+  <link rel="stylesheet" href="Awkward.css">
+</head>
+<body>
+  <div id="round_header">
+    <h1>Vote</h1>
+  </div>
+  <div id="card_scenario">
+  </div>
+  
+  <table>
+    <tr>
+      <td>
+        <div class="img-with-text">
+          <a href="p1_wins.html">
+            <img id="cat" src="Pictures/cat.png">
+            <span>Player 1</span>
+          </a>
+          <div class="timer cat">
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="img-with-text">
+          <a href="p2_wins.html">
+            <img id="turtle" src="Pictures/turtle.png">
+            <span>Player 2</span>
+          </a>
+          <div class="timer turtle">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       <div class="img-with-text">
+          <a href="p3_wins.html">
+            <img id="seal" src="Pictures/seal.png" >
+            <span>Player 3</span>
+          </a>
+          <div class="timer seal">
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="img-with-text">
+          <a href="p4_wins.html">
+            <img id="squid" src="Pictures/squid.png" >
+            <span>Player 4</span>
+          </a>
+          <div class="timer squid">
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="img-with-text">
+          <a href="p5_wins.html">
+            <img id="sloth" src="Pictures/sloth.png" >
+            <span>Player 5</span>
+          </a>
+          <div class="timer sloth">
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="img-with-text">
+          <a href="p6_wins.html">
+            <img id="rooster" src="Pictures/rooster.png" >  
+            <span>Player 6</span>
+          </a>
+          <div class="timer rooster">
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+ <!--  <div id="start_button">
+    <button class="btn btn-default">Start</button>
+  </div> -->
+  
+  <script>
+  //hide card_scenario block at the
+  $("#card_scenario").hide();
+  shuffle($("table"));
+    
+   function shuffle(tbl) {
+       var arr = tbl.find("td");
+       for(
+         var j, x, i = arr.length; i;
+         j = parseInt(Math.random() * i),
+         x = arr[--i], arr[i] = arr[j], arr[j] = x
+       );
+
+   var index = 0;
+       var tmp;
+       var rows = tbl.find("tr").length;
+       var cols = tbl.find("tr:first td").length;
+
+       for (i = 0; i < rows; i++){
+           tmp = tbl.find("tr").eq(i);
+           tmp.html();
+           for (j = 0; j < cols; j++)
+               tmp.append(arr[i*cols+j]);
+
+       }       
+   }
+/*var tableAccess = [];
+    $("table tr").each(function(){
+      var arrayOfThisRow = [];
+      var tableData = $(this).find("td");
+      if (tableData.length > 0){
+        table.each(function(){
+          arrayOfThisRow.push($(this).text());
+        });
+        tableAccess.push(arrayOfThisRow);
+      }
+      console.log(tableAccess);
+    });*/
+
+  
+   var firstTd = $('table td:eq(0)').find('img').attr('id');
+   var time = 10;
+   var timeRunner;
+   var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
+   
+   var index = 0;
+
+  
+      var situations = ["You laugh and a little bit comes out.",
+     "Your crush walks up and asks the person behind you out.",
+     "Your date has a giant booger in their nose.",
+     "You were just told, \"Oh, was this a date?\"",
+     "The bride, groom, and six other people are talking about a wedding that you\'re not invited to.",
+     "Someone actually told you to \"Bing It\"",
+     "Your one night stand asks you, \"What\'s for breakfast?\"",
+     "You just walked into a pole.",
+     "Your mom walks in during the sex scene.",
+     "You just responded to someone asking a question",
+     "The person you were talking to just got too close.",
+     "Two of the three people in the elevator are making out. You\'re not one of them.",
+     "The person next to you on the bus falls asleep on you.",
+     "You get caught on the kiss cam with the person to your left.",
+     "Your partner just called out your mom\'s name during sex.",
+     "You just scored a goal... for the other team.",
+     "Say out loud: \"Is it in yet?\"",
+     "Your joke just failed.",
+     "You tell your customers, \"Enjoy your meal.\" They respond, \"Thanks, you too.\"",
+     "The only person at the party you knew just left.",
+     "You just waved at the person waving to someone behind you.",
+     "The person to your right starts grinding on you.",
+     "After saying \"goodbye,\" you leave the same direction.",
+     "You just opened the dick in a box...",
+     "The hand you\'re shaking is wet...",
+     "People are having sex in the stall next to you..."];
+   
+   var time = 10;
+   var timeRunner;
+   var button_clicked = false;
+   
+   function testing(currentIndex, currentPlayer){
+     time -= 0.01;
+     $("div." + currentPlayer).html(time.toFixed(2));
+     console.log(button_clicked);
+     if(time <= 0.0 || button_clicked){
+       $("div." + currentPlayer).remove();
+       $("img#" + currentPlayer).fadeTo('fast', 1);
+       nextPlayer(currentIndex + 1);
+       button_clicked = false;
+     }
+   }
+   
+   var index = 0;
+   
+   function nextPlayer(currentIndex){
+     currentIndex = currentIndex || 0;
+     var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id");
+     $("img#" + currentPlayer).fadeTo('fast', 0.1);
+     clearInterval(timeRunner);
+     timeRunner = setInterval(function() { testing(currentIndex, currentPlayer);}, 10);
+     time = 10;
+   }
+   
+   $("button").click(function(){
+     // if($("button").text() === "Next"){
+//        button_clicked = true;
+//      }   
+     $("button").html("Next");
+     $("#card_scenario").html(situations[index]);
+     index++;
+     //also display the card_scenario block from now on
+     $("#card_scenario").show();
+     nextPlayer(0);     
+   });
+   
+   // var randomSit = Math.floor(Math.random() * situations.length);
+   //
+   // $("#card_scenario").html(situations[randomSit]);
+   // console.log(situations[randomSit])
+  </script>
+</body>
+</html>
