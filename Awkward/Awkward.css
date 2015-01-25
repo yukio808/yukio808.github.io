@@ -63,3 +63,14 @@ td {
   top: -50px;
   z-index: -1;
 }
+
+.flashed-content {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.flashed_content span {
+  margin-top: 20px;
+  font-weight: bold;
+  /*font-size: 40px;*/
+}
