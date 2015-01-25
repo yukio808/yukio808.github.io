@@ -7,8 +7,7 @@
   <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
   <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/situation.js"></script>
+  <script="boostrap.min.js"></script>
   <link rel="stylesheet" href="Awkward.css">
 </head>
 <body>
@@ -82,7 +81,8 @@
   //hide card_scenario block at the
   $("#card_scenario").hide();
   shuffle($("table"));
-    
+
+
    function shuffle(tbl) {
        var arr = tbl.find("td");
        for(
@@ -91,7 +91,6 @@
          x = arr[--i], arr[i] = arr[j], arr[j] = x
        );
 
-   var index = 0;
        var tmp;
        var rows = tbl.find("tr").length;
        var cols = tbl.find("tr:first td").length;
@@ -104,29 +103,10 @@
 
        }       
    }
-/*var tableAccess = [];
-    $("table tr").each(function(){
-      var arrayOfThisRow = [];
-      var tableData = $(this).find("td");
-      if (tableData.length > 0){
-        table.each(function(){
-          arrayOfThisRow.push($(this).text());
-        });
-        tableAccess.push(arrayOfThisRow);
-      }
-      console.log(tableAccess);
-    });*/
-
-  
-   var firstTd = $('table td:eq(0)').find('img').attr('id');
-   var time = 10;
-   var timeRunner;
-   var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
    
-   var index = 0;
-
-  
-      var situations = ["You laugh and a little bit comes out.",
+   //we might want to change this so that players_played saves both username + animal avatar (so we can refer to them for win pages)
+   var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
+   var situations = ["You laugh and a little bit comes out.",
      "Your crush walks up and asks the person behind you out.",
      "Your date has a giant booger in their nose.",
      "You were just told, \"Oh, was this a date?\"",
@@ -160,11 +140,11 @@
    function testing(currentIndex, currentPlayer){
      time -= 0.01;
      $("div." + currentPlayer).html(time.toFixed(2));
-     console.log(button_clicked);
+     console.log(button_clicked)
      if(time <= 0.0 || button_clicked){
        $("div." + currentPlayer).remove();
        $("img#" + currentPlayer).fadeTo('fast', 1);
-       nextPlayer(currentIndex + 1);
+       nextPlayer(currentIndex + 1)
        button_clicked = false;
      }
    }
@@ -173,10 +153,10 @@
    
    function nextPlayer(currentIndex){
      currentIndex = currentIndex || 0;
-     var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id");
+     var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id")
      $("img#" + currentPlayer).fadeTo('fast', 0.1);
      clearInterval(timeRunner);
-     timeRunner = setInterval(function() { testing(currentIndex, currentPlayer);}, 10);
+     timeRunner = setInterval(function() { testing(currentIndex, currentPlayer)}, 10)
      time = 10;
    }
    
