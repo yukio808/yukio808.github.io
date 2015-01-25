@@ -74,3 +74,19 @@ td {
   font-weight: bold;
   /*font-size: 40px;*/
 }
+
+#player_info {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.countdown {
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 30px;
+}
+
+.score {
+  font-weight: bold;
+}
