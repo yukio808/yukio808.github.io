@@ -28,8 +28,10 @@ table{
   top:70px;
 }
 
-img{
-  width: 100px;
+.img-with-text img {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
 }
 
 td{
@@ -42,8 +44,19 @@ td{
 
 #button{
   position:relative;
-  top:100px;
+  top:70px;
 }
 
+.img-with-text {
+    text-align: justify;
+    width: 100px;
+}
+
+#timer{
+  position:relative;
+  font-size:45px;
+  top:-50px;
+  z-index:-1;
+}
 
 
