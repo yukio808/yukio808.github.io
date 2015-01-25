@@ -8,57 +8,65 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script="boostrap.min.js"></script>
   <link rel="stylesheet" href="Awkward.css">
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </head>
 <body>
   <h1>Round #1</h1>
   
   <div id="card_scenario">
-    Stranger kisses your significant other.
   </div>
   
   <table align="center">
     <tr>
       <td>
-        <div class="img-with-text cat">
-          <img id="cat" src="Pictures/cat.jpg">
+        <div class="img-with-text">
+          <img id="cat" src="Pictures/cat.png">
           <span>User 1</span>
-          <div id="timer">
+          <div class="timer cat">
           </div>
         </div>
       </td>
       <td>
         <div class="img-with-text">
-          <img src="Pictures/turtle.jpeg">
+          <img id="turtle" src="Pictures/turtle.png">
           <span>User 2</span>
+          <div class="timer turtle">
+          </div>
         </div>
       </td>
     </tr>
     <tr>
       <td>
-       <div class="img-with-text">
-          <img src="Pictures/dog.jpeg" >
+       <div class="img-with-text seal">
+          <img id="seal" src="Pictures/seal.png" >
           <span>User 3</span>
+          <div class="timer seal">
+          </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/squid.jpg" >
+        <div class="img-with-text squid">
+          <img id="squid" src="Pictures/squid.png" >
           <span>User 4</span>
+          <div class="timer squid">
+          </div>
         </div>
       </td>
     </tr>
     <tr>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/sloth.jpg" >
+        <div class="img-with-text sloth">
+          <img id="sloth" src="Pictures/sloth.png" >
           <span>User 5</span>
+          <div class="timer sloth">
+          </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text">
-          <img src="Pictures/bunny.jpg" >  
+        <div class="img-with-text rooster">
+          <img id="rooster" src="Pictures/rooster.png" >  
           <span>User 6</span>
+          <div class="timer rooster">
+          </div>
         </div>
       </td>
     </tr>
@@ -106,22 +114,52 @@
 
    
    var time = 10;
+   var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
+   var situations = ["You laugh and a little bit comes out.",
+     "Your crush walks up and asks the person behind you out.",
+     "Your date has a giant booger in their nose.",
+     "You were just told, \"Oh, was this a date?\"",
+     "The bride, groom, and six other people are talking about a wedding that you\'re not invited to.",
+     "Someone actually told you to \"Bing It\"",
+     "Your one night stand asks you, \"What\'s for breakfast?\"",
+     "You just walked into a pole.",
+     "Your mom walks in during the sex scene.",
+     "You just responded to someone asking a question",
+     "The person you were talking to just got too close.",
+     "Two of the three people in the elevator are making out. You\'re not one of them.",
+     "The person next to you on the bus falls asleep on you.",
+     "You get caught on the kiss cam with the person to your left.",
+     "Your partner just called out your mom\'s name during sex.",
+     "You just scored a goal... for the other team.",
+     "Say out loud: \"Is it in yet?\"",
+     "Your joke just failed.",
+     "You tell your customers, \"Enjoy your meal.\" They respond, \"Thanks, you too.\"",
+     "The only person at the party you knew just left.",
+     "You just waved at the person waving to someone behind you.",
+     "The person to your right starts grinding on you.",
+     "After saying \"goodbye,\" you leave the same direction.",
+     "You just opened the dick in a box...",
+     "The hand you\'re shaking is wet...",
+     "People are having sex in the stall next to you..."];
    
    function test(){
      time -= 0.01;
-     $("div#timer").html(time.toFixed(2));
+     $("div." + players_played[0]).html(time.toFixed(2));
      if(time <= 0.0){
-       $("div#timer").remove();
-       $("img#cat").fadeTo('fast', 1);
+
+       $("div." + players_played[0]).remove();
+       $("img#" + players_played[0]).fadeTo('fast', 1);
      }
    }
    
+   var index = 0;
+   
    $("#button").click(function(){
+
      $("img#cat").fadeTo('fast', 0.1);
      window.setInterval(test, 25);
       $('#button').html("next");
    });
-
   </script>
 </body>
 </html>

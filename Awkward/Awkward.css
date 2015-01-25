@@ -52,7 +52,7 @@ td{
     width: 100px;
 }
 
-#timer{
+.timer{
   position:relative;
   font-size:45px;
   top:-50px;
