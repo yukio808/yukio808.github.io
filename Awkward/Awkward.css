@@ -80,4 +80,23 @@ img {
   font-weight: bold;
   /*font-size: 40px;*/
 }
+<<<<<<< HEAD
 >>>>>>> 6a7fb996f1b7dd9466b93d278c854cf1b7cb4073
+=======
+
+#player_info {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.countdown {
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 30px;
+}
+
+.score {
+  font-weight: bold;
+}
+>>>>>>> c9a87d76258f48bede2e0426ccb1ed9b77c81128
