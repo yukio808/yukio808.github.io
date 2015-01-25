@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
   <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script src="js/bootstrap.min.js"></script>
@@ -11,16 +12,18 @@
   <link rel="stylesheet" href="Awkward.css">
 </head>
 <body>
-  <h1>Round #1</h1>
+  <div id="round_header">
+    <h1>Round #1</h1>
+  </div>
   <div id="card_scenario">
   </div>
   
-  <table align="center">
+  <table>
     <tr>
       <td>
         <div class="img-with-text">
           <img id="cat" src="Pictures/cat.png">
-          <span>User 1</span>
+          <span>Player 1</span>
           <div class="timer cat">
           </div>
         </div>
@@ -28,7 +31,7 @@
       <td>
         <div class="img-with-text">
           <img id="turtle" src="Pictures/turtle.png">
-          <span>User 2</span>
+          <span>Player 2</span>
           <div class="timer turtle">
           </div>
         </div>
@@ -36,17 +39,17 @@
     </tr>
     <tr>
       <td>
-       <div class="img-with-text seal">
+       <div class="img-with-text">
           <img id="seal" src="Pictures/seal.png" >
-          <span>User 3</span>
+          <span>Player 3</span>
           <div class="timer seal">
           </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text squid">
+        <div class="img-with-text">
           <img id="squid" src="Pictures/squid.png" >
-          <span>User 4</span>
+          <span>Player 4</span>
           <div class="timer squid">
           </div>
         </div>
@@ -54,17 +57,17 @@
     </tr>
     <tr>
       <td>
-        <div class="img-with-text sloth">
+        <div class="img-with-text">
           <img id="sloth" src="Pictures/sloth.png" >
-          <span>User 5</span>
+          <span>Player 5</span>
           <div class="timer sloth">
           </div>
         </div>
       </td>
       <td>
-        <div class="img-with-text rooster">
+        <div class="img-with-text">
           <img id="rooster" src="Pictures/rooster.png" >  
-          <span>User 6</span>
+          <span>Player 6</span>
           <div class="timer rooster">
           </div>
         </div>
@@ -72,10 +75,12 @@
     </tr>
   </table>
   <div id="start_button">
-    <button id="button">Start</button>
+    <button class="btn btn-default">Start</button>
   </div>
   
   <script>
+  //hide card_scenario block at the
+  $("#card_scenario").hide();
   shuffle($("table"));
     
    function shuffle(tbl) {
@@ -89,7 +94,6 @@
    var index = 0;
        var tmp;
        var rows = tbl.find("tr").length;
-
        var cols = tbl.find("tr:first td").length;
 
        for (i = 0; i < rows; i++){
@@ -113,36 +117,13 @@
       console.log(tableAccess);
     });*/
 
-   
+  
    var firstTd = $('table td:eq(0)').find('img').attr('id');
    var time = 10;
    var timeRunner;
    var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
-   function test(currentIndex){
-    var currentPlayer = $('table td:eq(' + currentIndex + ')').find('img').attr('id');
-     time -= 0.01;
-     $(".timer." + currentPlayer).html(time.toFixed(2));
-     if(time <= 0.0){
-       $(".timer." + currentPlayer).remove();
-       $("div." + currentPlayer).find('img').fadeTo('fast', 1);
-       nextPlayer(currentIndex + 1);
-     }
-   }
    
    var index = 0;
-
-
-   function nextPlayer(currentIndex) {
-    clearInterval(timeRunner);
-    time = 10;
-    timeRunner = setInterval(function(){ test(currentIndex); }, 10);
-   }
-   
-   $("#button").click(function(){
-     $("#button").html("Next");
-     $("img#" + firstTd).fadeTo('fast', 0.1);
-     nextPlayer(0);
-   });   
 
   
       var situations = ["You laugh and a little bit comes out.",
@@ -172,10 +153,49 @@
      "The hand you\'re shaking is wet...",
      "People are having sex in the stall next to you..."];
    
-var randomsit = Math.floor(Math.random()* situations.length);
-
-$( "#card_scenario" ).html( situations[randomsit] );
-console.log(situations[randomsit]);
+   var time = 10;
+   var timeRunner;
+   var button_clicked = false;
+   
+   function testing(currentIndex, currentPlayer){
+     time -= 0.01;
+     $("div." + currentPlayer).html(time.toFixed(2));
+     console.log(button_clicked);
+     if(time <= 0.0 || button_clicked){
+       $("div." + currentPlayer).remove();
+       $("img#" + currentPlayer).fadeTo('fast', 1);
+       nextPlayer(currentIndex + 1);
+       button_clicked = false;
+     }
+   }
+   
+   var index = 0;
+   
+   function nextPlayer(currentIndex){
+     currentIndex = currentIndex || 0;
+     var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id");
+     $("img#" + currentPlayer).fadeTo('fast', 0.1);
+     clearInterval(timeRunner);
+     timeRunner = setInterval(function() { testing(currentIndex, currentPlayer);}, 10);
+     time = 10;
+   }
+   
+   $("button").click(function(){
+     // if($("button").text() === "Next"){
+//        button_clicked = true;
+//      }   
+     $("button").html("Next");
+     $("#card_scenario").html(situations[index]);
+     index++;
+     //also display the card_scenario block from now on
+     $("#card_scenario").show();
+     nextPlayer(0);     
+   });
+   
+   // var randomSit = Math.floor(Math.random() * situations.length);
+   //
+   // $("#card_scenario").html(situations[randomSit]);
+   // console.log(situations[randomSit])
   </script>
 </body>
 </html>
