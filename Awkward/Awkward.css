@@ -1,0 +1,36 @@
+h1{
+  font-family:"Lucida", sans-serif;
+  font-size: 50px;
+  text-align: center;
+}
+
+form{
+  margin: 0 auto;
+  width:250px;
+}
+
+#card_scenario{
+  position:absolute;
+  left:550px;
+  width: 300px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  background-color: #00FFFF;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+table{
+  position:absolute;
+  left:650px;
+  bottom:200px;
+}
+
+button{
+  position:absolute;
+  left:650px;
+  bottom:150px;
+}
+
+
+
