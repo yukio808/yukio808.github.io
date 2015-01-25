@@ -142,10 +142,11 @@
      $("div." + currentPlayer).html(time.toFixed(2));
      console.log(button_clicked)
      if(time <= 0.0 || button_clicked){
+       //console.log(currentPlayer + currentIndex)
        $("div." + currentPlayer).remove();
        $("img#" + currentPlayer).fadeTo('fast', 1);
-       nextPlayer(currentIndex + 1)
        button_clicked = false;
+       nextPlayer(currentIndex + 1)
      }
    }
    
@@ -154,6 +155,7 @@
    function nextPlayer(currentIndex){
      currentIndex = currentIndex || 0;
      var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id")
+     console.log(currentPlayer)
      $("img#" + currentPlayer).fadeTo('fast', 0.1);
      clearInterval(timeRunner);
      timeRunner = setInterval(function() { testing(currentIndex, currentPlayer)}, 10)
@@ -161,15 +163,20 @@
    }
    
    $("button").click(function(){
-     // if($("button").text() === "Next"){
-//        button_clicked = true;
-//      }   
+     if($("button").text() === "Next"){
+        button_clicked = true;
+     }   
      $("button").html("Next");
      $("#card_scenario").html(situations[index]);
      index++;
      //also display the card_scenario block from now on
      $("#card_scenario").show();
-     nextPlayer(0);     
+     
+     if(button_clicked){
+         nextPlayer(currentIndex);     
+     }else{
+         nextPlayer(0);
+     }
    });
    
    // var randomSit = Math.floor(Math.random() * situations.length);
