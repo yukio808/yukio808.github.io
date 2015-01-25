@@ -6,12 +6,12 @@
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script="boostrap.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/situation.js"></script>
   <link rel="stylesheet" href="Awkward.css">
 </head>
 <body>
   <h1>Round #1</h1>
-  
   <div id="card_scenario">
   </div>
   
@@ -86,6 +86,7 @@
          x = arr[--i], arr[i] = arr[j], arr[j] = x
        );
 
+   var index = 0;
        var tmp;
        var rows = tbl.find("tr").length;
 
@@ -113,9 +114,38 @@
     });*/
 
    
+   var firstTd = $('table td:eq(0)').find('img').attr('id');
    var time = 10;
+   var timeRunner;
    var players_played = ["cat", "sloth", "squid", "seal", "rooster", "turtle"];
-   var situations = ["You laugh and a little bit comes out.",
+   function test(currentIndex){
+    var currentPlayer = $('table td:eq(' + currentIndex + ')').find('img').attr('id');
+     time -= 0.01;
+     $(".timer." + currentPlayer).html(time.toFixed(2));
+     if(time <= 0.0){
+       $(".timer." + currentPlayer).remove();
+       $("div." + currentPlayer).find('img').fadeTo('fast', 1);
+       nextPlayer(currentIndex + 1);
+     }
+   }
+   
+   var index = 0;
+
+
+   function nextPlayer(currentIndex) {
+    clearInterval(timeRunner);
+    time = 10;
+    timeRunner = setInterval(function(){ test(currentIndex); }, 10);
+   }
+   
+   $("#button").click(function(){
+     $("#button").html("Next");
+     $("img#" + firstTd).fadeTo('fast', 0.1);
+     nextPlayer(0);
+   });   
+
+  
+      var situations = ["You laugh and a little bit comes out.",
      "Your crush walks up and asks the person behind you out.",
      "Your date has a giant booger in their nose.",
      "You were just told, \"Oh, was this a date?\"",
@@ -142,24 +172,10 @@
      "The hand you\'re shaking is wet...",
      "People are having sex in the stall next to you..."];
    
-   function test(){
-     time -= 0.01;
-     $("div." + players_played[0]).html(time.toFixed(2));
-     if(time <= 0.0){
+var randomsit = Math.floor(Math.random()* situations.length);
 
-       $("div." + players_played[0]).remove();
-       $("img#" + players_played[0]).fadeTo('fast', 1);
-     }
-   }
-   
-   var index = 0;
-   
-   $("#button").click(function(){
-
-     $("img#cat").fadeTo('fast', 0.1);
-     window.setInterval(test, 25);
-      $('#button').html("next");
-   });
+$( "#card_scenario" ).html( situations[randomsit] );
+console.log(situations[randomsit]);
   </script>
 </body>
 </html>
