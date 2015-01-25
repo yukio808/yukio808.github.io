@@ -6,7 +6,7 @@ h1{
 
 form{
   position: relative;
-  top:50px;
+  top:20px;
   margin: 0 auto;
   width:250px;
 }
@@ -25,13 +25,24 @@ form{
 
 table{
   position:relative;
-  top:100px;
+  top:70px;
 }
 
-button{
-  position:absolute;
-  left:650px;
-  bottom:150px;
+img{
+  width: 100px;
+}
+
+td{
+  padding: 10px;
+}
+
+#start_button{
+  text-align: center;
+}
+
+#button{
+  position:relative;
+  top:100px;
 }
 
 
