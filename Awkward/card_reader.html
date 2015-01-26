@@ -135,18 +135,20 @@
    
    var time = 10;
    var timeRunner;
+   var button_index;
    var button_clicked = false;
    
    function testing(currentIndex, currentPlayer){
      time -= 0.01;
      $("div." + currentPlayer).html(time.toFixed(2));
-     console.log(button_clicked)
+     //console.log(button_clicked)
      if(time <= 0.0 || button_clicked){
        //console.log(currentPlayer + currentIndex)
        $("div." + currentPlayer).remove();
        $("img#" + currentPlayer).fadeTo('fast', 1);
        button_clicked = false;
-       nextPlayer(currentIndex + 1)
+       currentIndex = currentIndex + 1
+       nextPlayer(currentIndex)
      }
    }
    
@@ -154,8 +156,12 @@
    
    function nextPlayer(currentIndex){
      currentIndex = currentIndex || 0;
+     button_index = currentIndex;
+     if(button_index === 6){
+       window.location.replace("vote.html");
+     }
      var currentPlayer = $("td:eq(" + currentIndex + ")").find("img").attr("id")
-     console.log(currentPlayer)
+     //console.log(currentPlayer)
      $("img#" + currentPlayer).fadeTo('fast', 0.1);
      clearInterval(timeRunner);
      timeRunner = setInterval(function() { testing(currentIndex, currentPlayer)}, 10)
@@ -168,12 +174,16 @@
      }   
      $("button").html("Next");
      $("#card_scenario").html(situations[index]);
-     index++;
+     //index++;
      //also display the card_scenario block from now on
      $("#card_scenario").show();
      
      if(button_clicked){
-         nextPlayer(currentIndex);     
+        nextPlayer(button_index);    
+        //console.log(currentIndex); 
+        if(button_index === 5){
+          window.location.replace("vote.html");
+        }
      }else{
          nextPlayer(0);
      }

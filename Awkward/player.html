@@ -100,7 +100,7 @@
      time -= 0.01;
      $(".countdown").html(time.toFixed(2));
      if(time <= 0.0) {
-       //when countdown reaches zero, grey out screen
+        $(".countdown").html("Stop");
      }
    }
    
